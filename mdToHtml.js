@@ -85,37 +85,54 @@ var $0 = $$.length - 1;
 switch (yystate) {
 case 1:
 
-        console.log($$[$0-1])
+        console.log(JSON.stringify($$[$0-1], null,1))
+        // console.log($$[$0-1])
         return $$[$0-1];
     
 break;
 case 2:
 
+        // this.$ = [$$[$0-2], 'NL', $$[$0]]
         this.$ = `${$$[$0-2]}</br>${$$[$0]}`
     
 break;
 case 3:
 
+        // this.$ = [$$[$0-1], 'NL']
         this.$ = `${$$[$0-1]}</br>`
     
 break;
 case 4:
 
+        // this.$ = [$$[$0]]
        this.$ = $$[$0]
     
 break;
 case 5:
 
-        this.$ = $$[$0]
+        this.$ = [
+            [{
+            'type':'CONTENT',
+            'value' : $$[$0]
+            }]
+        ]
     
 break;
 case 6:
 
         if($$[$0-1].length > 6){
-            this.$ = `${$$[$0-1]}${$$[$0]}`
+            this.$ = [
+                [{
+                'type': 'CONTENT',
+                'value': `${$$[$0-1]}${$$[$0]}`
+                }]
+            ]
             return;
         }
-        this.$ = `<h${$$[$0-1].length}>${$$[$0]}</h${$$[$0-1].length}>`
+        this.$ = [
+            [{'type': 'HEADING','value': `h${$$[$0-1].length}`}],
+            [{'type': 'CONTENT','value': $$[$0]}]
+             ]
     
 break;
 }
